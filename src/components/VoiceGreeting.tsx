@@ -57,15 +57,25 @@ const VoiceGreeting: React.FC<VoiceGreetingProps> = ({ name }) => {
     return () => window.speechSynthesis?.removeEventListener?.('voiceschanged', handler);
   }, []);
 
+  const URDU_WISHES = [
+    `رمضان مبارک، ${name}۔ اللہ تعالیٰ آپ کے روزے اور نمازیں قبول فرمائے۔ آمین`,
+    `رمضان مبارک، ${name}۔ اللہ تعالیٰ آپ کو صحت، تندرستی اور ڈھیروں خوشیاں عطا فرمائے۔ آمین`,
+    `رمضان مبارک، ${name}۔ اللہ تعالیٰ اس مبارک مہینے میں آپ کی تمام جائز دعائیں قبول فرمائے۔`,
+    `${name}، اللہ تعالیٰ آپ کے اور آپ کے گھر والوں کے لیے یہ رمضان بہت مبارک کرے۔`,
+    `رمضان مبارک، ${name}۔ اللہ تعالیٰ آپ کو روزے رکھنے اور عبادت کرنے کی ہمت اور طاقت عطا فرمائے۔`,
+    `${name}، اللہ پاک آپ کو رمضان کے اس پاک مہینے کی تمام برکتیں سمیٹنے کی توفیق دے۔`
+  ];
+
   useEffect(() => {
     if (!muted && !spokenRef.current) {
       spokenRef.current = true;
       const t = setTimeout(() => {
-        speak(`رمضان مبارک، ${name}۔ اللہ تعالیٰ آپ کے روزے اور نمازیں قبول فرمائے۔ آمین`);
+        const randomWish = URDU_WISHES[Math.floor(Math.random() * URDU_WISHES.length)];
+        speak(randomWish);
       }, 1200);
       return () => clearTimeout(t);
     }
-  }, [muted, name, speak]);
+  }, [muted, name, speak, URDU_WISHES]);
 
   const toggle = () => {
     const next = !muted;

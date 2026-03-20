@@ -123,18 +123,31 @@ const Parallax: React.FC<{ children: React.ReactNode; speed?: number; className?
   }, [speed]);
 
   return (
-    <div ref={ref} className={className} style={{ transform: `translateY(${offset}px)`, willChange: 'transform' }}>
+    <div ref={ref} className={className} style={{ transform: `translateY(${offset}px)`, translate: 'none', willChange: 'transform' }}>
       {children}
     </div>
   );
 };
 
+const GREETING_TEMPLATES = [
+  "🌙 Ramzan Mubarak, {name}! May this blessed month bring you peace and joy. ✨",
+  "✨ Wishing you a spiritual and blessed Ramadan, {name}! 🌙",
+  "🕌 {name}, May Allah shower His blessings upon you and your family. 🤲",
+  "⭐ Welcome to the month of mercy, {name}! 🌙",
+  "🤲 {name}, May your fasts and prayers be accepted in this holy month. ✨",
+  "✨ Ramadan Kareem, {name}! Wishing you strength and guidance. 🌙",
+  "🌙 {name}, May the light of Ramadan illuminate your soul. ✨"
+];
+
 const Index: React.FC = () => {
   const [userName, setUserName] = useState<string | null>(null);
+  const [greeting, setGreeting] = useState<string>('');
   const [showMain, setShowMain] = useState(false);
 
   const handleIntroComplete = useCallback((name: string) => {
     setUserName(name);
+    const randomTemplate = GREETING_TEMPLATES[Math.floor(Math.random() * GREETING_TEMPLATES.length)];
+    setGreeting(randomTemplate.replace('{name}', name));
     setTimeout(() => setShowMain(true), 300);
   }, []);
 
@@ -162,9 +175,8 @@ const Index: React.FC = () => {
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-arabic text-gold text-glow-strong mb-4" style={{ lineHeight: '1.1' }}>
                 Ramzan Mubarak
               </h1>
-              <p className="text-2xl md:text-3xl font-arabic text-foreground/80 mb-2">{userName}</p>
-              <p className="text-foreground/50 text-sm md:text-base max-w-md mx-auto mt-4">
-                May this blessed month illuminate your path with faith, hope, and endless blessings
+              <p className="text-xl md:text-2xl font-arabic text-foreground/90 mb-2 max-w-2xl mx-auto px-4 italic leading-relaxed">
+                {greeting}
               </p>
             </div>
           </Parallax>
