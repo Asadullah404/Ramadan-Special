@@ -4,10 +4,6 @@ import FloatingLanterns from '@/components/FloatingLanterns';
 import CrescentMoon from '@/components/CrescentMoon';
 import IntroScreen from '@/components/IntroScreen';
 import VoiceGreeting from '@/components/VoiceGreeting';
-import PrayerTimesCard from '@/components/PrayerTimesCard';
-import DigitalTasbeeh from '@/components/DigitalTasbeeh';
-import DuaSky from '@/components/DuaSky';
-import RamzanProgress from '@/components/RamzanProgress';
 import GlobalFasting from '@/components/GlobalFasting';
 import HistoricalContent from '@/components/HistoricalContent';
 import ShareCard from '@/components/ShareCard';
@@ -173,26 +169,6 @@ const Index: React.FC = () => {
             </div>
           </Parallax>
         </Section>
-
-        {/* Prayer Times + Progress — slide from sides */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Section variant="fade-left" delay="0s">
-            <PrayerTimesCard />
-          </Section>
-          <Section variant="fade-right" delay="0.15s">
-            <RamzanProgress />
-          </Section>
-        </div>
-
-        {/* Tasbeeh + Dua — flip entrance */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Section variant="flip" delay="0s">
-            <DigitalTasbeeh />
-          </Section>
-          <Section variant="flip" delay="0.15s">
-            <DuaSky />
-          </Section>
-        </div>
 
         {/* Global Fasting — rotate in */}
         <Section className="mb-8" variant="rotate-in">

@@ -8,7 +8,7 @@ interface ShareCardProps {
 const ShareCard: React.FC<ShareCardProps> = ({ name }) => {
   const [copied, setCopied] = useState(false);
 
-  const message = `🌙 ${name} is wishing you Ramzan Mubarak! May this blessed month bring you peace, joy, and divine blessings. ✨`;
+  const message = `🌙 Asadullah de raha ha mubarak bad! May this blessed month bring you peace, joy, and divine blessings. ✨`;
 
   const handleCopy = useCallback(async () => {
     try {
